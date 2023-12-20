@@ -84,11 +84,11 @@ resource "aws_security_group" "web_sg" {
 
 # Create ELB
 resource "aws_elb" "my_elb" {
-  name               = "my-elb_proj"
+  name               = "my-elb-proj"
   security_groups    = [aws_security_group.web_sg.id]
   availability_zones = aws_subnet.public_subnet[*].availability_zone
   listener {
-      instance_port     = 80
+      instance_port     = 8000
       instance_protocol = "http"
       lb_port           = 80
       lb_protocol       = "http"
@@ -102,10 +102,10 @@ resource "aws_elb" "my_elb" {
     timeout             = 5
   }
   listener {
-    instance_port     = 0
+    instance_port     = 80
     instance_protocol = "http"
-    lb_port           = 0
-    lb_protocol       = "http"
+    lb_port           = 443
+    lb_protocol       = "https"
   }
 }
 
