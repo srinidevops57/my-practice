@@ -87,7 +87,7 @@ resource "aws_elb" "my_elb" {
   name               = "my-elb_proj"
   security_groups    = [aws_security_group.web_sg.id]
   availability_zones = aws_subnet.public_subnet[*].availability_zone
-  listeners = [
+  listener
     {
       instance_port     = 80
       instance_protocol = "http"
@@ -95,7 +95,7 @@ resource "aws_elb" "my_elb" {
       lb_protocol       = "http"
     }
   ]
-  health_check = {
+  health_check {
     target              = "HTTP:80/"
     interval            = 30
     healthy_threshold   = 2
