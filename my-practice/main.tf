@@ -94,7 +94,7 @@ resource "aws_elb" "my_elb" {
       lb_port           = 80
       lb_protocol       = "http"
     }
-  ]
+
   health_check {
     target              = "HTTP:80/"
     interval            = 30
