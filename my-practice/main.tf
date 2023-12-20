@@ -84,23 +84,23 @@ resource "aws_security_group" "web_sg" {
 
 # Create ELB
 resource "aws_elb" "my_elb" {
-  name               = "my-elb"
+  name               = "my-elb_proj"
   security_groups    = [aws_security_group.web_sg.id]
   availability_zones = aws_subnet.public_subnet[*].availability_zone
   listeners = [
     {
-      instance_port     = 80,
-      instance_protocol = "http",
-      lb_port           = 80,
-      lb_protocol       = "http",
-    },
+      instance_port     = 80
+      instance_protocol = "http"
+      lb_port           = 80
+      lb_protocol       = "http"
+    }
   ]
   health_check = {
-    target              = "HTTP:80/",
-    interval            = 30,
-    healthy_threshold   = 2,
-    unhealthy_threshold = 2,
-    timeout             = 5,
+    target              = "HTTP:80/"
+    interval            = 30
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+    timeout             = 5
   }
   listener {
     instance_port     = 0
@@ -112,7 +112,7 @@ resource "aws_elb" "my_elb" {
 
 # Create ALB
 resource "aws_lb" "my_alb" {
-  name               = "my-alb"
+  name               = "my-alb-proj"
   internal           = true
   load_balancer_type = "application"
   security_groups    = [aws_security_group.web_sg.id]
