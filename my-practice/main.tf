@@ -87,8 +87,7 @@ resource "aws_elb" "my_elb" {
   name               = "my-elb_proj"
   security_groups    = [aws_security_group.web_sg.id]
   availability_zones = aws_subnet.public_subnet[*].availability_zone
-  listener
-    {
+  listener {
       instance_port     = 80
       instance_protocol = "http"
       lb_port           = 80
@@ -104,9 +103,9 @@ resource "aws_elb" "my_elb" {
   }
   listener {
     instance_port     = 0
-    instance_protocol = ""
+    instance_protocol = "http"
     lb_port           = 0
-    lb_protocol       = ""
+    lb_protocol       = "http"
   }
 }
 
