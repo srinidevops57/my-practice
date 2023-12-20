@@ -106,6 +106,7 @@ resource "aws_elb" "my_elb" {
     instance_protocol = "http"
     lb_port           = 443
     lb_protocol       = "https"
+    ssl_certificate_id = "arn:aws:iam::123456789012:server-certificate/my-cert"  # Replace with your SSL certificate ARN
   }
 }
 
@@ -149,7 +150,7 @@ resource "aws_route53_record" "cname_elb" {
 
 # Create S3 bucket
 resource "aws_s3_bucket" "my_s3_bucket" {
-  bucket = "my-unique-s3-bucket-name"
+  bucket = "my-unique-s3-bucket-name-007875"
  }
 
 # Create IAM policy for Assignment-3
